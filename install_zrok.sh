@@ -2,6 +2,6 @@
 
 # Install Zrok
 echo "Installing Zrok..."
-wget -qO- https://get.zrok.io/install.sh | sh
+curl -sSf https://get.openziti.io/install.bash | sudo bash -s zrok
 
 echo "Zrok installation completed!"
