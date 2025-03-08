@@ -1,2 +1,2 @@
 #!/bin/bash#
-ngrok tcp 22 --region ap
+zrok share private --backend-mode tcpTunnel localhost:22
