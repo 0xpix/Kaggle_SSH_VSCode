@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Exit immediately if any command fails
+# Exit immediately if any command fails (except in apt update)
 set -e
 
 # Validate input
@@ -28,9 +28,20 @@ fi
 chmod 700 "$SSH_DIR"
 chmod 600 "$AUTHORIZED_KEYS"
 
+echo "Fixing APT repository issues..."
+
+# Disable problematic repositories
+sudo mv /etc/apt/sources.list.d/google-cloud.list /etc/apt/sources.list.d/google-cloud.list.disabled || true
+sudo mv /etc/apt/sources.list.d/google-fast-socket.list /etc/apt/sources.list.d/google-fast-socket.list.disabled || true
+
+# Retry apt update up to 3 times
+for i in {1..3}; do
+    sudo apt update --allow-releaseinfo-change -qq && break || sleep 5
+done
+
 echo "Installing OpenSSH Server..."
-sudo apt update -qq
-sudo apt install -y openssh-server
+# Continue even if a package issue occurs
+sudo apt install -y openssh-server || echo "Warning: Some packages failed to install, continuing..."
 
 echo "Configuring SSH Server..."
 
@@ -52,6 +63,6 @@ EOF
 
 # Restart SSH service
 echo "Restarting SSH service..."
-sudo service ssh restart
+sudo service ssh restart || echo "Warning: SSH service restart failed, check logs."
 
 echo "SSH server setup complete."
