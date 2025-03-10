@@ -21,16 +21,6 @@ python --version
 echo "📦 Upgrading pip..."
 pip install --upgrade pip
 
-echo "📜 Installing dependencies from requirements.txt..."
-pip install -r requirements.txt
-
-echo "🚀 Installing JAX with GPU support..."
-pip install jax jaxlib
-pip install jax[cuda12_pip] -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
-echo "🔧 Installing Optax, Flax, and Termcolor..."
-pip install optax flax termcolor
-
 echo "🖥 Installing NVIDIA utilities..."
 sudo apt install nvidia-utils-515 -y
 
