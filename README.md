@@ -3,8 +3,7 @@
 Start by going to this Notebook: [Kaggle_VSCode_Remote_SSH](https://www.kaggle.com/code/nschlfat/ssh-kaggle-vscode)
 and click on the "Copy and Edit" button to create your own copy of the notebook. Follow Step by Step instructions in the notebook.
 
-The notebook will install the necessary packages, clone a Github repo to run
-scripts to setup up the SSH connection, and the zrok tunneling service.
+The notebook will install the necessary packages, clone a Github repo to run scripts to setup up the SSH connection, and the zrok tunneling service.
 
 After you have completed the steps in the notebook and copied the private key, go to your terminal first and run these scripts:
 
